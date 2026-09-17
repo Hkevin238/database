@@ -1,9 +1,10 @@
 import os
+import streamlit as st
 from supabase import create_client, Client
 
-# Gufata Credentials za Supabase muri Environment Variables cyangwa kuzishyiramo aho uzikoresha
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://frgxfkhsnfnmrxipzsdz.supabase.co")
-SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZyZ3hma2hzbmZubXJ4aXB6c2R6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk2Mjk4NDgsImV4cCI6MjEwNTIwNTg0OH0.khu7VPoRSW8pxcxOn8ZdjXj5J7dq060Z1M4oyOtBa6M")
+# Gufata Credentials za Supabasehera muri Streamlit Secrets, hanyuma os.environ, cyangwa izo washyizemo
+SUPABASE_URL = st.secrets.get("SUPABASE_URL") or os.environ.get("SUPABASE_URL", "https://frgxfkhsnfnmrxipzsdz.supabase.co")
+SUPABASE_KEY = st.secrets.get("SUPABASE_KEY") or os.environ.get("SUPABASE_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZyZ3hma2hzbmZubXJ4aXB6c2R6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk2Mjk4NDgsImV4cCI6MjEwNTIwNTg0OH0.khu7VPoRSW8pxcxOn8ZdjXj5J7dq060Z1M4oyOtBa6M")
 
 # Guhuza na Supabase Client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
